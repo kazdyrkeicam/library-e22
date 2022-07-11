@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/books")
@@ -21,6 +22,11 @@ public class BookController {
     @GetMapping
     public List<Book> getAllBooks() {
          return this.bookService.getAllBooks();
+    }
+
+    @GetMapping("{bookId}")
+    public Optional<Book> getBookById(@PathVariable("bookId") Long bookId) {
+        return this.bookService.getBookById(bookId);
     }
 
     @PostMapping
